@@ -1,0 +1,38 @@
+
+<div class="table-responsive">
+ <table class="table table-bordered"  > 
+         <thead>
+            <tr>
+                <th>Products</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead> 
+        
+ 
+        <tbody *ngIf="prodArray.length > 0 ; else noProd"> 
+            <tr *ngFor="let prod of  prodArray">
+                <td><i class="fa-solid fa-xmark m-2" (click)="onDelete(prod.id)"></i>
+                    {{prod.name}}</td>
+                <td>{{prod.price}}</td>
+                <td>
+                    <i class="fa-solid fa-square-minus" 
+                    (click)="onClick(prod.id,'min' )"></i>
+                        {{prod.count}}
+                    <i class="fa-solid fa-square-plus"
+                    (click)="onClick(prod.id,'max')"></i>
+                </td>
+                <td>{{prod.count! * +prod.price}}</td>
+            </tr>
+           
+         </tbody> 
+    
+     </table>
+
+ 
+ </div> 
+<ng-template #noProd>
+    <p class="alert alert-info text-uppercase ">
+        There are no products</p>
+</ng-template>
