@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardService } from '../../services/card.service';
 import { Idata } from '../../models/data';
-import { count } from 'rxjs';
+
 
 @Component({
   selector: 'app-table',
@@ -10,93 +10,90 @@ import { count } from 'rxjs';
 })
 export class TableComponent implements OnInit {
   prodArray: Array<Idata> = []
-  
+
   total !: number
-  
+
+
   constructor(private _cardservice: CardService) { }
+
 
   ngOnInit(): void {
     this._cardservice.ProdSubasobservable$
       .subscribe(res => {
-            
+
         if (this.prodArray.some(obj => obj.id === res.id)) {
           let index = this.prodArray.findIndex(ele => ele.id === res.id)
           this.prodArray[index].count!++
-          console.log(this.prodArray);
+          // console.log(this.prodArray);
+
 
         } else {
           this.prodArray.push({ ...res, count: 1 })
-          console.log(this.prodArray);
-        }
-         
-         
-      }) 
 
-        
- 
+
+
+          // console.log(this.prodArray);
+        }
+
+        this._cardservice.prodCalobserver(this.prodArray)
+        console.log(this.prodArray);
+
+      })
+
+
+
 
 
   }
 
- 
+
 
   onClick(id: string, value: string,) {
     let getindex = this.prodArray.findIndex(obj => obj.id === id)
-      console.log(getindex);
-      
+    console.log(getindex);
+
     if (value == 'max') {
       this.prodArray[getindex].count!++
+      this.prodArray[getindex].totalcount=this.prodArray[getindex].count!++
+      this._cardservice.prodCalobserver(this.prodArray)
+  
+      
+   
 
     }
     else if (value == 'min' && this.prodArray[getindex].count! > 1) {
       this.prodArray[getindex].count!--
-    }
-
-
-  }
-
-  onDelete(id:string){
-    let getindex = this.prodArray.findIndex(obj => obj.id === id)
-  
-    let getconfirm = confirm('Are you sure to delete this product')
-    if(getconfirm){
-    this.prodArray.splice(getindex,1)
-          
-    }
-
-     
-    
+      this.prodArray[getindex].totalcount=this.prodArray[getindex].count!--
+      this._cardservice.prodCalobserver(this.prodArray)
       
-    
-       
+
+    }
+
+
   }
 
-  // onMinus() {
-  //   this.prodArray.forEach(ele=>{
-  //     console.log(ele);
+  onDelete(id: string) {
+    let getindex = this.prodArray.findIndex(
+      obj => obj.id === id)
 
-  //     if(ele.id && this.numberofitems > 1){
-  //       this.numberofitems--
-  //     }
-  //   })
+    let getconfirm = confirm('Are you sure to delete this product')
+    if (getconfirm) {
+      
+      this.prodArray[getindex].totalcount=this.prodArray[getindex].count!--
+      this._cardservice.prodCalobserver(this.prodArray)
+      this.prodArray.splice(getindex, 1)
+     
 
-  // }
-  // onPlus() {
-
-  //    this.prodArray.forEach(ele=> {
-  //     console.log(ele);
-
-  //        if( ele.id    ){
-  //         ele.count++
-  //          if(ele.count++ ){
-  //         this.total = +this.obj.price*this.obj.count
-  //       }
+    }
 
 
 
-  //         }
 
 
-  //    });
-  // }
+
+  }
+
+
+
+
 }

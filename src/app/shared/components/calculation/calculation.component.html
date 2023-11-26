@@ -1,20 +1,35 @@
 
-    <div class="row">
-        <div class="col-md-6">
-            <ul class="list-group">
-                <li class="list-group-item">subtotal</li>
-                <li class="list-group-item">vat tax</li>
-                <li class="list-group-item">discount</li>
-                <li class="list-group-item">total</li>
-            </ul>
-        </div>
-        <div class="col-md-6">
-            <ul class="list-group">
-                <li class="list-group-item"></li>
-                <li class="list-group-item"></li>
-                <li class="list-group-item"></li>
-                <li class="list-group-item"></li>
-            </ul> 
+<table class="table">
+ 
+    <tbody >
+      <tr  >
+        <th scope="row" >subtotal</th>
+        <td>{{numberofItem}}</td>
+        <td>{{totalcal | currency :'INR'}}</td>
+        
+      </tr>
+      <tr>
+        <th scope="row">vattax</th>
+        <td>
+          <input type="text" #vattaxvalue placeholder="10%" >
+        </td>
+        <td>{{vattax}}</td>
+        
+      </tr>
+      <tr>
+        <th scope="row">discoubt</th>
+        <td>
+          <input type="text"  placeholder="10%">
 
-    </div>
-</div>
+        </td>
+        <td>the Bird</td>
+        
+      </tr>
+      <tr>
+        <th scope="row">total</th>
+        <td></td>
+        <td>the Bird</td>
+        
+      </tr>
+    </tbody>
+  </table>

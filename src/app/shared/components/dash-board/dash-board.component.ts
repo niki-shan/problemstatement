@@ -12,4 +12,8 @@ export class DashBoardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onCancell(){
+    
+  }
+
 }

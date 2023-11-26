@@ -11,6 +11,9 @@ export class CardService {
 
    private prodSub$ : Subject<Idata>=new Subject<Idata>()
    ProdSubasobservable$ = this.prodSub$.asObservable()
+   
+   private prodsubCal$ : Subject<Array<Idata>>= new Subject<Array<Idata>>()
+   prodCalobservable$  = this.prodsubCal$.asObservable()
   constructor() { }
  
 
@@ -18,9 +21,6 @@ export class CardService {
     return this.productArray
   }
 
-  // getalldata(prod : Idata){
-  //  this.productArray.push(prod)
-  // }
 
  prodObserver(prod:Idata){
   console.log(prod);
@@ -28,10 +28,12 @@ export class CardService {
    this.prodSub$.next(prod)
   }
 
-  getIdData(id:Idata){
-    this.productArray.filter(pId=>{
-        
-    })
+  prodCalobserver(prod:Array<Idata>){
+    this.prodsubCal$.next(prod)
   }
 
-}
+  }
+
+  
+
+
