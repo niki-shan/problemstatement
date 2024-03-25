@@ -1,35 +1,47 @@
-
 <table class="table">
- 
-    <tbody >
-      <tr  >
-        <th scope="row" >subtotal</th>
-        <td>{{numberofItem}}</td>
-        <td>{{totalcal | currency :'INR'}}</td>
-        
-      </tr>
-      <tr>
-        <th scope="row">vattax</th>
-        <td>
-          <input type="text" #vattaxvalue placeholder="10%" >
-        </td>
-        <td>{{vattax}}</td>
-        
-      </tr>
-      <tr>
-        <th scope="row">discoubt</th>
-        <td>
-          <input type="text"  placeholder="10%">
 
-        </td>
-        <td>the Bird</td>
-        
-      </tr>
-      <tr>
-        <th scope="row">total</th>
-        <td></td>
-        <td>the Bird</td>
-        
-      </tr>
-    </tbody>
-  </table>
+  <tbody>
+    <tr>
+      <th scope="row">subtotal</th>
+      <td>{{numberofItem}}</td>
+      <td>{{totalcal | currency :'INR'}}</td>
+    </tr>
+    <tr>
+      <th scope="row">vattax</th>
+      <td>
+        <input type="text" [(ngModel)]="vattaxvalue"
+         placeholder="10%" (keyup)="taxAmount()">
+      </td>
+      <td>
+
+        {{vattax}}
+      </td>
+
+    </tr>
+    <tr>
+      <th scope="row">discoubt</th>
+      <td>
+        <input type="text" [(ngModel)]="discount"
+         [disabled]="!vattaxvalue" placeholder="10%"
+          (keyup)="discoubtAmount()">
+
+
+      </td>
+      <td>{{discountvalue}}</td>
+
+    </tr>
+    <tr>
+      <th scope="row">total</th>
+      <td></td>
+      <td>{{totalBillAmount}}</td>
+
+    </tr>
+    <div>
+      <button class="btn btn-danger" (click)="oncancelled()" [disabled]="!numberofItem">cancelled</button>
+      <button class="btn btn-success " (click)="onprocess()"[disabled]="!totalBillAmount">Process</button>
+    </div>
+  </tbody>
+
+
+
+</table>

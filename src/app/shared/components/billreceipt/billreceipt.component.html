@@ -1,0 +1,50 @@
+
+<div>
+<h1 class=" text-center font-weight-bold"> Bill Receipt</h1>
+ <h2>{{date }}</h2>   
+</div>
+
+   
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Sr.no</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+
+    </thead>
+    <tbody >
+        <tr *ngFor = "let prod of receiptArray ; index as i" >
+            <td>{{i + 1}}</td>
+            <td>{{prod.name}}</td>
+            <td>{{prod.price}}</td>
+            <td>{{itemtotal}}</td>
+            <td>{{totalAmount}}</td>
+        </tr>
+      
+    </tbody>
+</table>
+
+<table class="table table-bordered">
+    <tbody >
+        <tr>
+            <td>Subtotal</td>
+            <td>{{totalcal}}</td>
+        </tr>
+        <tr>
+            <td>vattax</td>
+            <td>{{vattax}}</td>
+        </tr>
+        <tr>
+            <td>discoubt</td>
+            <td>{{discount}}</td>
+        </tr>
+        <tr>
+            <td>Total Amount</td>
+            <td>{{totalbillAmount}}</td>
+        </tr>
+    </tbody>
+</table>

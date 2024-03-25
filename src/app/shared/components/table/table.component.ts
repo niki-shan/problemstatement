@@ -38,6 +38,13 @@ export class TableComponent implements OnInit {
         this._cardservice.prodCalobserver(this.prodArray)
         console.log(this.prodArray);
 
+
+     
+          this._cardservice.emptySub.subscribe(res=>{
+                this.prodArray = res
+          })
+
+
       })
 
 
@@ -56,17 +63,13 @@ export class TableComponent implements OnInit {
       this.prodArray[getindex].count!++
       this.prodArray[getindex].totalcount=this.prodArray[getindex].count!++
       this._cardservice.prodCalobserver(this.prodArray)
-  
-      
-   
-
+ 
     }
     else if (value == 'min' && this.prodArray[getindex].count! > 1) {
       this.prodArray[getindex].count!--
       this.prodArray[getindex].totalcount=this.prodArray[getindex].count!--
       this._cardservice.prodCalobserver(this.prodArray)
-      
-
+  
     }
 
 
@@ -78,15 +81,13 @@ export class TableComponent implements OnInit {
 
     let getconfirm = confirm('Are you sure to delete this product')
     if (getconfirm) {
-      
       this.prodArray[getindex].totalcount=this.prodArray[getindex].count!--
       this._cardservice.prodCalobserver(this.prodArray)
       this.prodArray.splice(getindex, 1)
-     
-
     }
 
 
+   }
 
 
 
@@ -96,4 +97,3 @@ export class TableComponent implements OnInit {
 
 
 
-}

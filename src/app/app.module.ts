@@ -9,6 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalculationComponent } from './shared/components/calculation/calculation.component';
 import { DashBoardComponent } from './shared/components/dash-board/dash-board.component';
 import {MatTableModule} from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import { BillreceiptComponent } from './shared/components/billreceipt/billreceipt.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import {MatTableModule} from '@angular/material/table';
     TableComponent,
     NavbarComponent,
     CalculationComponent,
-    DashBoardComponent
+    DashBoardComponent,
+    BillreceiptComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

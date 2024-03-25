@@ -20,7 +20,8 @@ export class CardComponent implements OnInit {
   onClick(prod:Idata){
     
         this._cardservice.prodObserver(prod)
-    // console.log(prod);
+        
+   
   }
 
 }
